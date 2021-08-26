@@ -8,6 +8,43 @@ from selenium_ui.bitbucket.pages.pages import LoginPage, GetStarted
 from util.conf import BITBUCKET_SETTINGS
 
 
+def view_code_search(webdriver, datasets):
+    page = BasePage(webdriver)
+    rnd_repo = random.choice(datasets["repos"])
+
+    project_key = rnd_repo[1]
+    repo_slug = rnd_repo[0]
+
+    @print_timing("view_code_search")
+    def measure():
+
+        @print_timing("selenium_app_custom_action:view_code_search")
+        def sub_measure():
+            page.go_to_url(f"{BITBUCKET_SETTINGS.server_url}/projects/{project_key}/repos/{repo_slug}/browse")
+            page.wait_until_visible((By.CSS_SELECTOR, '.aui-navgroup-vertical>.aui-navgroup-inner')) # Wait for repo navigation panel is visible
+            page.wait_until_visible((By.ID, 'searchObjectButton'))  # Wait for you app-specific UI element by ID selector
+        sub_measure()
+    measure()
+
+
+def view_code_scan(webdriver, datasets):
+    page = BasePage(webdriver)
+    rnd_repo = random.choice(datasets["repos"])
+
+    project_key = rnd_repo[1]
+    repo_slug = rnd_repo[0]
+
+    @print_timing("view_code_scan")
+    def measure():
+
+        @print_timing("selenium_app_custom_action:view_code_scan")
+        def sub_measure():
+            page.go_to_url(f"{BITBUCKET_SETTINGS.server_url}/projects/{project_key}/repos/{repo_slug}/settings")
+            page.wait_until_visible((By.CSS_SELECTOR, '.aui-navgroup-vertical>.aui-navgroup-inner')) # Wait for repo navigation panel is visible
+            page.wait_until_visible((By.ID, 'indexed-repository-branch'))  # Wait for you app-specific UI element by ID selector
+        sub_measure()
+    measure()
+
 def app_specific_action(webdriver, datasets):
     page = BasePage(webdriver)
     rnd_repo = random.choice(datasets["repos"])
