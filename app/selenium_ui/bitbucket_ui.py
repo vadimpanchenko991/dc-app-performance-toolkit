@@ -58,6 +58,13 @@ def test_1_selenium_view_branches(bitbucket_webdriver, bitbucket_datasets, bitbu
 def test_1_selenium_view_commits(bitbucket_webdriver, bitbucket_datasets, bitbucket_screen_shots):
     modules.view_commits(bitbucket_webdriver, bitbucket_datasets)
 
+# Custom
+def test_1_selenium_view_last_log_link_page(bitbucket_webdriver, bitbucket_datasets, bitbucket_screen_shots):
+    extension_ui.view_last_log_link_page(bitbucket_webdriver, bitbucket_datasets)
+
+def test_1_selenium_view_advanced_logging_page(bitbucket_webdriver, bitbucket_datasets, bitbucket_screen_shots):
+    extension_ui.view_advanced_logging_page(bitbucket_webdriver, bitbucket_datasets)
+
 
 """
 Add custom actions anywhere between login and log out action. Move this to a different line as needed.

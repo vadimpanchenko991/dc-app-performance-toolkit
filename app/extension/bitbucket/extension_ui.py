@@ -8,6 +8,42 @@ from selenium_ui.bitbucket.pages.pages import LoginPage, GetStarted
 from util.conf import BITBUCKET_SETTINGS
 
 
+
+def view_last_log_link_page(webdriver, datasets):
+    
+    page = BasePage(webdriver)
+
+    @print_timing("view_last_log_link")
+    def measure():
+
+        @print_timing("selenium_app_custom_action:view_last_log_link")
+        def sub_measure():
+            page.go_to_url(f"{BITBUCKET_SETTINGS.server_url}/admin")
+            page.wait_until_visible((By.CSS_SELECTOR, '.aui-navgroup-vertical>.aui-navgroup-inner')) # Wait for repo navigation panel is visible
+            page.wait_until_visible((By.ID, 'last-log-link'))  # Wait for you app-specific UI element by ID selector
+        sub_measure()
+    measure()
+
+
+
+def view_advanced_logging_page(webdriver, datasets):
+    
+    page = BasePage(webdriver)
+
+    @print_timing("view_last_log_link")
+    def measure():
+
+        @print_timing("selenium_app_custom_action:view_last_log_link")
+        def sub_measure():
+            page.go_to_url(f"{BITBUCKET_SETTINGS.server_url}/admin")
+            page.wait_until_visible((By.CSS_SELECTOR, '.aui-navgroup-vertical>.aui-navgroup-inner')) # Wait for repo navigation panel is visible
+            page.wait_until_visible((By.ID, 'advanced-logging-link'))  # Wait for you app-specific UI element by ID selector
+        sub_measure()
+    measure()
+
+
+
+
 def app_specific_action(webdriver, datasets):
     page = BasePage(webdriver)
     rnd_repo = random.choice(datasets["repos"])
