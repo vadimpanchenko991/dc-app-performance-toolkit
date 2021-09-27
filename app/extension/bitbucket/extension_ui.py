@@ -30,10 +30,10 @@ def view_advanced_logging_page(webdriver, datasets):
     
     page = BasePage(webdriver)
 
-    @print_timing("view_last_log_link")
+    @print_timing("view_advanced_logging_page")
     def measure():
 
-        @print_timing("selenium_app_custom_action:view_last_log_link")
+        @print_timing("selenium_app_custom_action:view_advanced_logging_page")
         def sub_measure():
             page.go_to_url(f"{BITBUCKET_SETTINGS.server_url}/admin")
             page.wait_until_visible((By.CSS_SELECTOR, '.aui-navgroup-vertical>.aui-navgroup-inner')) # Wait for repo navigation panel is visible
